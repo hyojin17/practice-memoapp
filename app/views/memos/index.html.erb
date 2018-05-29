@@ -1,0 +1,21 @@
+<h1>메모 인덱스 페이지</h1>
+<div class="table-responsive">
+    <table class="table table-fit">
+        <thead>
+            <tr>
+                <th>title</th>
+                <th>user</th>
+                <th>comments</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%@memos.each do |memo| %>
+            <tr>
+                <td><%= link_to(memo.title, memo_path(memo.id))%></td>
+                <td><%=memo.user.email%></td>
+                <td>100</td>
+            </tr>
+            <%end%>
+        </tbody>
+    </table>
+</div>

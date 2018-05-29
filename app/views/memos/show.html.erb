@@ -1,0 +1,50 @@
+<h1><%=@memo.title%></h1>
+<hr>
+<h2>by <%=@memo.user.email%></h2>
+
+<%if @memo.user == current_user %>
+    <%= link_to '수정', edit_memo_path%>
+    <%= link_to '삭제', memo_path, method: :delete %>
+<%else%>
+<%end%>
+<!--로그인한 유저가 메모를 쓴 유저랑 가틍ㄹ 때만 수정 삭제를 할 수 있게-->
+<hr>
+
+<%=@memo.content.html_safe%>
+<!--태그들은 안전한 거니깐 안심하고 적용해서 보여줘.(예-bold체이면 bold체 그대로 적용시켜서 보여주기 )-->
+<hr>
+
+<div class="well">
+    <%#TODO: 댓글 창 완성하기%>
+    <!--댓글 입력하는 곳-->
+    
+    <%= form_for(@comment) do |f| %>
+   <%= f.label :comment %>
+   <%= f.text_field :content %>
+   <%= f.submit value: '작성' %>
+<% end %>
+    
+<!--<form action='/comments' method='POST'>-->
+<!--    <%#= hidden_field_tag :authenticity_token, form_authenticity_token %>-->
+<!--    <input type='hidden' name='memo_id' value= <%#= @memo.id %>></input>-->
+<!--    <strong>Comment:</strong>-->
+<!--    <input type='text' name='input_content'></input>-->
+<!--    <input type='submit'></input>-->
+<!--</form>-->
+    
+    
+<hr />
+
+
+    
+</div>
+<hr>
+<div>
+    댓글 보여주는 곳
+    <%#TODO: 댓글 창 완성하기%>
+<p>
+  <strong>댓글:</strong>
+  <%= @comment.content %>
+</p>
+    <%= link_to '댓글삭제', comments_path, method: :delete %>
+</div>
